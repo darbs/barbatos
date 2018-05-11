@@ -10,8 +10,9 @@ type Entity struct {
 	Mobile bool		`json:"mobile"`
 }
 
-func (e Entity) parse(jsonStr string) (Entity){
+// todo handle empty objects or missing attributes
+func FromJson(jsonStr string) (Entity, error){
 	var entity Entity
-	json.Unmarshal([]byte(jsonStr), &entity)
-	return entity
+	err := json.Unmarshal([]byte(jsonStr), &entity)
+	return entity, err
 }
